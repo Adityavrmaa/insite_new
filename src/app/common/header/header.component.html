@@ -1,0 +1,141 @@
+<header>
+  <div class="header shd">
+    <div class="container">
+      <div class="row pd-top-10">
+        <div class="col-lg-2 desktop-header">
+          <div class="insite-logo">
+    
+            <a (click)="ifSubscribe()" id="home_btn"><img src="assets/images/logo.png" alt="" style="cursor: pointer;"></a>
+
+          </div>
+        </div>
+        <div class="col-lg-10 desktop-header">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="insite-header">
+                <ul>
+                  <li>
+                    <input type="text" *ngIf="searching" ngx-google-places-autocomplete [options]='options'
+                      #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+                    <a href="javascript:void(0);" *ngIf="!searching" (click)="search()"><img
+                        src="assets/images/icon/search.png"></a>
+                    <!-- <a href="javascript:void(0);"  *ngIf="!searching"><img src="assets/images/icon/search.png"></a> -->
+                  </li>
+                  <li *ngIf="this.isProfileCreated==true  && captured == 'true'"><a routerLink="/chat"><img
+                        src="assets/images/icon/chat.png"></a></li>
+                  <li *ngIf="this.isProfileCreated==true && captured == 'true'"><a routerLink="/notifications"><img
+                        src="assets/images/icon/notification.png"></a></li>
+                  <li *ngIf="this.isProfileCreated==true && captured == 'true' "><a routerLink="/settings"><img
+                        src="assets/images/icon/setting.png"></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="insite-logout show-me">
+                <ul>
+                  <li><a href="JavaScript:void(0);" *ngIf="isProfileCreated==false && isLogined==true"
+                      data-toggle="modal" data-target="#create-profile">CREATE PROFILE</a></li>
+                  <!-- <li><a href="JavaScript:void(0);" *ngIf="isLogined == true" data-toggle="modal"
+                      data-target="#logout">LOGOUT</a></li> -->
+                  <li>
+                    <a id="login_link" class="margin-12 show-me" *ngIf="isLogined==false" href="JavaScript:void(0);"
+                      data-toggle="modal" data-target="#login">LOGIN</a>
+                  </li>
+                  <!-- <li>
+                      <a id="login_link" class="margin-12 show-me" *ngIf="guestUser==true" href="JavaScript:void(0);" 
+                        data-toggle="modal" data-target="#login">GUEST</a>
+                      </li> -->
+                  <li><a class="margin-12 c-pointer" *ngIf="isLogined == true && captured == 'true'"
+                      style="color: black;" (click)=goToProfile()>WELCOME 
+                     
+                       {{username | uppercase}}
+                      </a></li>
+                  <li><button class="btn-logout" *ngIf="isLogined == true" data-toggle="modal"
+                      data-target="#logout"><img src="assets/images/icon/logout.png"></button></li>
+                </ul>
+              </div>
+              <div class="insite-login hide-me">
+                <ul>
+                  <li><a routerLink="/my-profile">WELCOME ASHISH </a></li>
+                  <li>
+                    <button class="btn-logout" data-toggle="modal" data-target="#logout">
+                      <img src="assets/images/icon/logout.png">
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 mobile-header">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand">
+              <img src="assets/images/logo.png" routerLink="/home" alt="">
+            </a>
+            <button class="menu-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent">
+              <span class="icon-spar"></span>
+              <span class="icon-spar"></span>
+              <span class="icon-spar"></span>
+            </button>
+
+            <div class="navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-link active">
+                  <a href="#"><i class="fa fa-search"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#"><i class="fa fa-comment"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a routerLink="/notifications"><i class="fa fa-bell"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#"><i class="fa fa-cog"></i></a>
+                </li>
+                <li class="nav-item show-me">
+                  <a href="JavaScript:void(0);" data-toggle="modal" data-target="#login"
+                    class="log-close"><b>LOGIN</b></a>
+                </li>
+                <li class="nav-item hide-me">
+                  <a href="JavaScript:void(0);"><b>GUEST</b></a>
+                </li>
+                <li class="nav-item show-me">
+                  <a href="JavaScript:void(0);" data-toggle="modal" data-target="#create-profile"
+                    class="log-close"><b>CREATE PROFILE</b></a>
+                </li>
+                <li class="nav-item hide-me">
+                  <a routerLink="/my-profile"><b>WELCOME ASHISH</b></a>
+                </li>
+                <li class="nav-item hide-me">
+                  <a href="JavaScript:void(0);" data-toggle="modal" data-target="#logout"
+                    class="log-close"><b>LOGOUT</b></a>
+                </li>
+              </ul>
+              <a href="#" title="" class="close-menu"><i class="la la-close"></i></a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!--header end-->
+
+<!-- LogOut Modal -->
+
+<div id="logout" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body logout-modal-body">
+        <h3 class="text-center">Alert</h3>
+        <p>Do you really want to logout?</p>
+        <button class="btn btn-third" data-dismiss="modal">NO</button>
+        <button class="btn btn-simple" data-dismiss="modal" (click)="logout()">YES</button>
+      </div>
+    </div>
+  </div>
+</div>

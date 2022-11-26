@@ -1,0 +1,218 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row chat-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="chat-heading pb-5">
+            <h3>SETTINGS</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="settings-list">
+            <ul>
+              <!-- <li class="hvr-icon-wobble-horizontal w-100"><a class="w-100"
+                  routerLink="/notifications-setting">Notifications Settings<span><img class="hvr-icon"
+                      src="assets/images/icon/arrow_with_circle.png"></span></a></li> -->
+              <li class="hvr-icon-wobble-horizontal w-100">
+                <a
+                  class="w-100"
+                  data-toggle="modal"
+                  data-target="#send-feedback"
+                  href="JavaScript:void(0);"
+                  >Send Feedback<span
+                    ><img
+                      class="hvr-icon"
+                      src="assets/images/icon/arrow_with_circle.png" /></span
+                ></a>
+              </li>
+              <li [hidden]="true" class="hvr-icon-wobble-horizontal w-100">
+                <a class="w-100" routerLink="/terms-&-conditions"
+                  >Terms and Conditions<span
+                    ><img
+                      class="hvr-icon"
+                      src="assets/images/icon/arrow_with_circle.png" /></span
+                ></a>
+              </li>
+              <!-- <li class="hvr-icon-wobble-horizontal w-100"><a class="w-100" routerLink="/legal-policy">Legal Policy<span><img class="hvr-icon" src="assets/images/icon/arrow_with_circle.png"></span></a></li> -->
+              <li [hidden]="true" class="hvr-icon-wobble-horizontal w-100">
+                <a class="w-100" routerLink="/about-us"
+                  >About US<span
+                    ><img
+                      class="hvr-icon"
+                      src="assets/images/icon/arrow_with_circle.png" /></span
+                ></a>
+              </li>
+              <!-- <li class="hvr-icon-wobble-horizontal w-100">
+                <a
+                  class="w-100"
+                  href="https://api.insite.city/admin_panel/settings_management/faq/"
+                  target="_blank"
+                  >FAQ<span
+                    ><img
+                      class="hvr-icon"
+                      src="assets/images/icon/arrow_with_circle.png" /></span
+                ></a>
+              </li> -->
+
+              <li class="hvr-icon-wobble-horizontal w-100"><a class="w-100"
+                        routerLink="/faq" target="_blank">FAQ<span><img
+                            class="hvr-icon" src="assets/images/icon/arrow_with_circle.png"></span></a></li>
+
+              <li class="hvr-icon-wobble-horizontal w-100">
+                <a
+                  class="w-100"
+                  data-toggle="modal"
+                  (click)="clearForm()"
+                  data-target="#change-password"
+                  href="JavaScript:void(0);"
+                  >Change Password<span
+                    ><img
+                      class="hvr-icon"
+                      src="assets/images/icon/arrow_with_circle.png" /></span
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+          <!-- <div class="settings-list">
+            <ul>
+              <li class="hvr-icon-wobble-horizontal w-100"><a class="w-100" routerLink="/privacy-policy">Privacy and
+                  Safety<span><img class="hvr-icon" src="assets/images/icon/arrow_with_circle.png"></span></a></li>
+              <li class="hvr-icon-wobble-horizontal w-100"><a class="w-100" data-toggle="modal" (click)="clearForm()"
+                  data-target="#change-password" href="JavaScript:void(0);">Change Password<span><img class="hvr-icon"
+                      src="assets/images/icon/arrow_with_circle.png"></span></a></li>
+
+            </ul>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+<!--------------------------- Modal Start--------------------------------->
+<div id="send-feedback" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3 class="text-center">SEND US FEEDBACK</h3>
+      </div>
+      <div class="modal-body my-modal-body">
+        <div class="form-group">
+          <textarea
+            name="feed-back"
+            [(ngModel)]="feedback"
+            rows="5"
+            placeholder="Send us mail"
+            class="form-control"
+          ></textarea>
+        </div>
+        <div class="feedback-para">
+          <p>
+            Thank you for sharing your thoughts, we value your opinion! INSITE
+            was developed for all of you in the architecture & design community.
+            It is a work in progress and we are determined to keep improving it
+            in orders to promote community, knowledge and discussion on all
+            architecture and design related topics. Learning about your
+            experience using INSITE is enormously helpful.
+          </p>
+        </div>
+        <button class="btn btn-simple btn-block" (click)="sendFeedback()">
+          SEND
+        </button>
+        <button
+          class="btn btn-simple btn-block"
+          id="close-feedbackModal"
+          data-dismiss="modal"
+        >
+          CANCEL
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="change-password" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <form [formGroup]="changePasswordForm">
+      <div class="modal-content">
+        <div class="modal-header my-modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+          <h3 class="text-center">CHANGE PASSWORD</h3>
+        </div>
+        <div class="modal-body my-modal-body">
+          <div class="form-group">
+            <input
+              type="password"
+              formControlName="oldPassword"
+              placeholder="Current Password"
+              class="form-control"
+            />
+            <div
+              *ngIf="submitted && f.oldPassword.errors"
+              class="invalid-feedback text-center"
+            >
+              <div *ngIf="f.oldPassword.errors.required">
+                Current Password is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              formControlName="newPassword"
+              placeholder="New Password"
+              class="form-control"
+            />
+            <div
+              *ngIf="submitted && f.newPassword.errors"
+              class="invalid-feedback text-center"
+            >
+              <div *ngIf="f.newPassword.errors.required">
+                New Password is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              formControlName="confirmPassword"
+              placeholder="Confirm New Password"
+              class="form-control"
+            />
+            <div
+              *ngIf="submitted && f.confirmPassword.errors"
+              class="invalid-feedback text-center"
+            >
+              <div *ngIf="f.confirmPassword.errors.required">
+                Confirm Password is required
+              </div>
+            </div>
+          </div>
+          <button
+            class="btn btn-simple btn-block"
+            (click)="changeUserPassword()"
+          >
+            SAVE
+          </button>
+          <button
+            class="btn btn-simple btn-block"
+            id="cancel"
+            data-dismiss="modal"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--------------------------- Modal End-------------------------------->

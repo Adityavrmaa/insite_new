@@ -1,0 +1,117 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row profile-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="fix-middle">
+                        <img src="{{profiledata?.profile_image}}">
+                        <h6><strong>{{profiledata?.company_detail?.name}} </strong></h6>
+                        <h6><strong>{{profiledata?.name}}</strong></h6>
+                    </div>
+                    <div class="inv-details">
+                        <p>{{profiledata?.about}}</p>
+                    </div>
+                    <div class="followers more-add">
+                        <ul>
+                            <li><a href="JavaScript:void(0);" data-toggle="modal" (click)="followUnfollow()"><img
+                                        src="assets/images/icon/add_user.png"></a></li>
+                            <!-- routerLink="/chat" -->
+                            <li *ngIf="profile_type == 2"><a href="JavaScript:void(0);"><img
+                                        routerLink='/chat-insight/{{id}}' src="assets/images/icon/chat.png"></a></li>
+                            <li *ngIf="profiledata?.is_liked == false"><img src="assets/images/icon/hearts.png"
+                                    (click)=likeDIslike()><span>{{profiledata?.total_likes}}</span></li>
+                            <li *ngIf="profiledata?.is_liked == true"><img src="assets/images/icon/Likehearts.png"
+                                    (click)=likeDIslike()><span>{{profiledata?.total_likes}}</span></li>
+                            <li>Followers <span>{{profiledata?.total_follow_to}}</span></li>
+                            <li>Following <span>{{profiledata?.total_follow_by}}</span></li>
+                        </ul>
+                    </div>
+                    <div class="my-projects">
+                        <div class="add-projects">
+                            <h6><strong>My Projects</strong></h6>
+                            <h6><strong>Total Projects {{projectdata.length}}</strong></h6>
+                        </div>
+                        <div class="project-list">
+                            <ul class="scroll-width myprofileli">
+                               
+                                    <li class="main_li "
+                                        *ngFor="let projectdata of projectdata">
+                                        <div class="box-shadow">
+                                            <a routerLink="/involvement/{{projectdata.id}}" class="project-view">
+                                                <img src={{projectdata.post_image.image}}>
+                                                <div class="clip-head">
+                                                    <h6>{{projectdata?.name}}'s Projects |
+                                                        {{projectdata?.project_type?.type}}</h6>
+                                                    <ul>
+                                                        <li class="my-para">
+                                                            <p>{{projectdata?.city}}, {{projectdata?.country}}</p>
+                                                            <p>{{projectdata?.year}}</p>
+                                                        </li>
+                                                        <li class="my-plane">
+                                                            <button routerLink="/involvement"><i
+                                                                    class="fa fa-paper-plane"></i></button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                              
+                            </ul>
+                        </div>
+                        <div class="my-social-link">
+                            <div class="project-social cursor">
+                                <a (click)='openLink(socialLinks1)' ngDefaultControl [ngModel]="socialLinks1"
+                                    style="color: black;">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a (click)='openLink(socialLinks2)' ngDefaultControl [ngModel]="socialLinks2"
+                                    style="color: black;">
+                                    <i class="fa fa-twitter cursor"></i>
+                                </a>
+                                <a (click)='openLink(socialLinks3)' ngDefaultControl [ngModel]="socialLinks3"
+                                    style="color: black;">
+                                    <i class="fa fa-instagram cursor"></i>
+                                </a>
+                                <a (click)='openLink(socialLinks4)' ngDefaultControl [ngModel]="socialLinks4"
+                                    style="color: black;">
+                                    <i class="fa fa-google cursor"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inv-details">
+                        <h6><strong>Detail Description</strong></h6>
+                        <p>{{description}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+<!--------------------------- Modal Start--------------------------------->
+<div class="modal fade" id="follow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" data-dismiss="modal" role="document">
+        <div class="modal-content content-edit">
+            <div class="modal-body follow-modal">
+                <p><strong>YOU JUST FOLLOWED THIS USER</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Unfollow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm" data-dismiss="modal" role="document">
+        <div class="modal-content content-edit">
+            <div class="modal-body follow-modal">
+                <p><strong>YOU JUST UNFOLLOWED THIS USER</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--------------------------- Modal End-------------------------------->

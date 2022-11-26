@@ -1,0 +1,298 @@
+<app-header></app-header>
+<div class="container-fluid">
+   <div class="row chat-wrap">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+               <div class="chat-heading">
+                  <h3>CHAT</h3>
+                  <label>
+                     <input type="text" (keyup)="applyFilter($event.target.value)" class="my-search" [(ngModel)]='searchUsers'
+                     name="search" placeholder="search">
+                     <img src="assets/images/icon/search.png">
+                     <!-- <button type="button"  class="btn btn-primary"><i class="fa fa-repeat"></i></button> -->
+                  </label>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+               <div class="chat-heading-btn">
+                  <a data-toggle="modal" data-target="#new-chat" style="cursor: pointer;"><img src="assets/images/icon/chat.png"> Start New Chat</a>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+               <div class="form-group chat-user search_input">
+                  <input type="text" class="form-control" (keyup)="searchmethod($event.target.value)" autocomplete="off" placeholder="  Search user">
+               </div>
+               <div class="chat-list bg-white">
+                  <!-- <h1>{{filterUser}}</h1> -->
+                  <ul>
+                     <li *ngFor="let list of chatUserarr">
+                        <a (click)=chatInsight(list)>
+                           <div class="chat-user">
+                              <div class="chat-img">
+                                 <img src="{{list.profile_image}}">
+                                 <i *ngIf="list.onlineState == 0" class="fa fa-circle inctive-user"> </i>
+                                 <i *ngIf="list.onlineState == 1" class="fa fa-circle active-user"> </i>
+                              </div>
+                              <div class="chat-user-name">
+                                 <h6>{{list?.name}}</h6>
+                                 <p><span *ngIf="list.mediaType == 'image'"><i class="fa fa-image"></i></span> <span
+                                    *ngIf="list.mediaType == 'text'">{{list?.lastMessage}}</span></p>
+                              </div>
+                              <div class="read-msg">
+                                 <p>{{list?.timeStamp | date:'shortTime'}}</p>
+                                 <!-- <p class="msg-count">2</p> -->
+                              </div>
+                           </div>
+                        </a>
+                     </li>
+                     <!-- <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/grey_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li>
+                        <li>
+                        <a routerLink="/chat-insight">
+                            <div class="chat-user">
+                                <div class="chat-img">
+                                    <img src="assets/images/1099386850.jpg">
+                                    <i class="fa fa-circle active-user"></i>
+                                </div>
+                                <div class="chat-user-name">
+                                    <h6>Joy Edwards</h6>
+                                    <p><span><img src="assets/images/icon/green_tick.png"></span> Lorem ipsum is dummy text.</p>
+                                </div>
+                                <div class="read-msg">
+                                    <p>11:00 AM</p>
+                                    <p class="msg-count">2</p>
+                                </div>
+                            </div>
+                        </a>
+                        </li> -->
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- <app-footer></app-footer> -->
+<!--------------------------- Modal Start--------------------------------->
+<div class="modal fade" id="new-chat">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button class="close" data-dismiss="modal">&times;</button>
+            <h6>Users List</h6>
+         </div>
+         <div class="modal-body">
+            <div class="new-start">
+               <div class="form-group search_input">
+                  <input autocomplete="off" class="form-control" (keyup)="applyModalFilter($event.target.value)" placeholder="Search user" type="text">
+               </div>
+               <ul>
+                  <li *ngFor="let user of ChatUserList" data-dismiss="modal">
+                    <img [src]="imageUrl + user?.profile_image" />
+                    <h6 routerLink="/chat-insight/{{user?.id}}">{{user?.company_name}} <br> {{user?.username}}
+                        <span>
+                            <a routerLink="/chat-insight/{{user?.id}}"><img src="assets/images/icon/chat.png"></a>
+                        </span>
+                    </h6>
+                  </li>
+                  <!-- <li>
+                     <h6>Ashish Saxena <span><a routerLink="/chat-insight"><img src="assets/images/icon/chat.png"></a></span></h6>
+                     </li>
+                     <li>
+                     <h6>Ashish Saxena <span><a routerLink="/chat-insight"><img src="assets/images/icon/chat.png"></a></span></h6>
+                     </li>
+                     <li>
+                     <h6>Ashish Saxena <span><a routerLink="/chat-insight"><img src="assets/images/icon/chat.png"></a></span></h6>
+                     </li> -->
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--------------------------- Modal End-------------------------------->
+
+<app-footer></app-footer>

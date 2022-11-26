@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row chat-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="chat-heading">
+                        <h3>NOTIFICATIONS</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="notifications">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr *ngFor="let list of notificationList">
+
+                                    <!-- For Involvement,Commen,Like,New Post on a Post-->
+                                    <td *ngIf="list?.notification_context?.notification_type == '1' || list?.notification_context?.notification_type == '2' || list?.notification_context?.notification_type == '3' || list?.notification_context?.notification_type == '4'" >
+                                        <a routerLink="/involvement/{{list?.notification_context?.id}}">{{list?.notification_context?.body}}</a>
+                                    </td>
+                                    <td *ngIf="list?.notification_context?.notification_type == '1' || list?.notification_context?.notification_type == '2' || list?.notification_context?.notification_type == '3' || list?.notification_context?.notification_type == '4'">{{list?.created_at
+                                        | date}}</td>
+
+
+                                    <!-- For New Question  -->
+                                    <td *ngIf="list?.notification_context?.notification_type == '5'"><a
+                                            routerLink="/public-detailed-view/{{list?.notification_context?.id}}">{{list?.notification_context?.body}}</a>
+                                    </td>
+                                    <td *ngIf="list?.notification_context?.notification_type == '5'">
+                                        {{list?.created_at | date}}
+                                    </td>
+
+                                    <!-- For New Chat  -->
+                                    <td *ngIf="list?.notification_context?.notification_type == '7'"><a
+                                            routerLink="/chat-insight/{{list?.notification_context?.id}}">{{list?.notification_context?.body}}</a>
+                                    </td>
+                                    <td *ngIf="list?.notification_context?.notification_type == '7'">
+                                        {{list?.created_at | date}}
+                                    </td>
+
+
+                                </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

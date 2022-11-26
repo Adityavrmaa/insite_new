@@ -1,0 +1,18 @@
+.img{
+    width: 150px;
+    min-width: 150;
+}
+.img img{
+    width: 100%;
+    border-radius: 8px;
+    min-width: 100%;
+}
+.fileInput{
+    margin: 15px 32px;
+}
+
+.img-box{
+    width: 180px;
+    margin-top: 20px;
+    min-width: 180px;
+}

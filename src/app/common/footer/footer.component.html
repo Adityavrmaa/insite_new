@@ -1,0 +1,713 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-sm-12 col-md-12 col-xs-12">
+      <div class="show-footer">
+        <button class="toggle-footer" id="scrollToBottom"><i class="fa fa-angle-double-up"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+<footer class="bottom section-padding" id="footish">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 col-sm-6 col-md-3 col-xs-12">
+        <div class="bottom-list">
+          <h6>GET TO KNOW US</h6>
+          <ul>
+            <li>
+              <!-- <a href="https://api.insite.city/admin_panel/settings_management/about_us/" target="_blank" title="">About Us</a> -->
+              <a routerLink="/about-us">About Us</a>
+            </li>
+            <li>
+              <a href="" data-target="#contact-modal" data-toggle="modal">Contact Us</a>
+            </li>
+            <li>
+              <a routerLink="/disclaimer" >Disclaimer</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-6 col-md-3 col-xs-12">
+        <div class="bottom-list">
+          <h6>LEGAL</h6>
+          <ul>
+            <li>
+              <!-- <a href="https://api.insite.city/admin_panel/settings_management/privacy_policy/" target="_blank" title="">Legal Policy</a> -->
+              <a routerLink="/privacy-policy">Privacy Policy</a>
+            </li>
+            <li>
+              <!-- <a href="https://api.insite.city/admin_panel/settings_management/terms_and_condition/" target="_blank" title="">Terms & Conditions</a> -->
+              <a routerLink="/terms-&-conditions" title="">Terms & Conditions</a>
+            </li>
+            <!-- <li>
+              <a title="" data-target="#send-feedback" href="JavaScript:void(0);">Send Feedback</a>
+            </li> -->
+          </ul>
+        </div>
+        <!--bottom-list end-->
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-6 col-md-3 col-xs-12">
+        <div class="bottom-list">
+          <h6>CONNECT WITH US</h6>
+          <div class="ft-social">
+            <a href="https://www.facebook.com/INSITE_theapp-108944610708510" target="_blank">
+              <i class="fa fa-facebook"></i>
+            </a>
+            <a href="https://www.twitter.com/insite_theapp/" target="_blank">
+              <i class="fa fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com/insite_theapp/" target="_blank">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-google"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-6 col-md-3 col-xs-12">
+        <div class="bottom-list">
+          <h6>DOWNLOAD APP</h6>
+          <div class="app-link">
+            <ul>
+              <li>
+                <a href="#">
+                  <img src="assets/images/button-google-play.png">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="assets/images/button-app-store.png">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-----------------------OTP Modals Start --------------------->
+<div id="otp" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center"><strong>ENTER OTP</strong></h4>
+      </div>
+      <div class="modal-body my-otp-body otp">
+        <ul>
+          <li class="otp-labl"><input class="otp1" type="text" name="otp1" maxlength="1" placeholder="0"></li>
+          <li class="otp-labl"><input class="otp1" type="text" name="otp2" maxlength="1" placeholder="0"></li>
+          <li class="otp-labl"><input class="otp1" type="text" name="otp3" maxlength="1" placeholder="0"></li>
+          <li class="otp-labl"><input class="otp1" type="text" name="otp4" maxlength="1" placeholder="0"></li>
+        </ul>
+        <div class="resend-otp">
+          <a href="#">Resend OTP?</a><span id="demo"></span>
+        </div>
+        <button class="btn btn-simple btn-block" data-dismiss="modal" data-toggle="modal"
+          data-target="#reset-password">SUBMIT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="contact-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center"><strong>CONTACT US</strong></h4>
+      </div>
+      <div class="modal-body my-otp-body otp">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group" style="color: black;">
+              <label class="d-block" style>Christina Dragoi <br> Werastr. 6 <br> 70182 Stuttgart <br> Germany</label>
+
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group mb-1">
+              <label class="d-block" style="color: black;">Mobile Number</label>
+              <a href="tel:+49 176 30749384">+49 176 307 49 384</a>
+            </div>
+            <div class="form-group">
+              <label class="d-block" style="color: black;">Email:</label>
+              <a href="mailto:info@insite.media">info@insite.media</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reset Password -->
+<div id="reset-password" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center"><strong>CHANGE PASSWORD</strong></h4>
+      </div>
+      <div class="modal-body my-modal-body">
+        <div class="form-group">
+          <input type="password" name="password" placeholder="Enter new password" class="form-control">
+        </div>
+        <div class="form-group">
+          <input type="password" name="conf-password" placeholder="Confirm new password" class="form-control">
+        </div>
+        <button class="btn btn-simple btn-block" data-dismiss="modal">SAVE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Guest Otp -->
+<div id="guest-otp" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center"><strong>ENTER OTP</strong></h4>
+      </div>
+      <div class="modal-body my-otp-body otp">
+        <ul>
+          <li class="otp-labl"><input [(ngModel)]="otpverification.otp1" class="otp1" type="text" name="otp"
+              maxlength="1" placeholder="0"></li>
+          <li class="otp-labl"><input [(ngModel)]="otpverification.otp2" class="otp1" type="text" name="otp"
+              maxlength="1" placeholder="0"></li>
+          <li class="otp-labl"><input [(ngModel)]="otpverification.otp3" class="otp1" type="text" name="otp"
+              maxlength="1" placeholder="0"></li>
+          <li class="otp-labl"><input [(ngModel)]="otpverification.otp4" class="otp1" type="text" name="otp"
+              maxlength="1" placeholder="0"></li>
+        </ul>
+        <div class="resend-otp">
+          <a (click)="resend_otp()" href="#">Resend OTP?</a>
+          <!--<span id="guest-demo"></span>-->
+          <!-- <button (click)="resend_otp()" class="btn btn-simple btn-block" data-toggle="modal">Resend OTP?</button> -->
+        </div>
+        <button (click)="api_otp_verification()" class="btn btn-simple btn-block" data-toggle="modal">SUBMIT</button>
+        <span style="color:red;">{{errormessage}}</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-----------------------OTP Modals Start --------------------->
+
+<!--- Login Modal------>
+<div id="login" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" id="loginBtn" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="text-center">LOGIN</h3>
+      </div>
+      <div class="modal-body my-modal-body">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <form [formGroup]="loginForm">
+              <div class="form-group">
+                <input type="text" name="username" formControlName="email" placeholder="Enter Username/Email ID"
+                  class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="password" name="password" formControlName="password" placeholder="Enter password"
+                  class="form-control">
+              </div>
+            <button type="submit" (click)="onSubmit()" class="btn btn-simple btn-block">LOGIN</button>
+
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alexa">
+            <a href="JavaScript:void(0);" data-dismiss="modal" data-toggle="modal" data-target="#forgot-password">Forgot
+              Password?</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!-- <button type="submit" (click)="onSubmit()" class="btn btn-simple btn-block">LOGIN</button> -->
+            <p>Or</p>
+            <!-- <button class="btn btn-block btn-third" data-toggle="modal" (click)="load_guest_number()"
+              data-dismiss="modal">CONTINUE AS GUEST</button> -->
+            <p class="body-para">Not registered yet? <span style="cursor: pointer;color: #03649e;"
+                (click)="load_guest_number()">Create a new account</span></p>
+            <p class="body-para">Connect with Google</p>
+            <ul>
+              <!-- <li>
+                <a><img style="width: 30px;height: 30px;" src="assets/images/icon/facebook_color.png"
+                    (click)="signInWithFB()"></a>
+              </li> -->
+              <li>
+                <a><img style="width: 32px;height: 32px;" src="assets/images/icon/google_color.png"
+                    (click)="signInWithGoogle()"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Forget password -->
+<div id="forgot-password" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="text-center">ENTER EMAIL ID</h3>
+      </div>
+      <div class="modal-body my-modal-body">
+        <form>
+          <div class="form-group">
+            <input id="forgotEmail" type="email" placeholder="Enter email" class="form-control">
+          </div>
+          <button (click)="forgotPass()" class="btn btn-simple btn-block" data-toggle="modal">SEND LINK</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="guest-number" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="text-center"><strong>ENTER YOUR EMAIL</strong></h4>
+      </div>
+      <div class="modal-body my-otp-body otp">
+        <form>
+          <div class="form-group">
+            <input id="email" type="email" placeholder="Enter email" class="form-control">
+          </div>
+        </form>
+        <button class="btn btn-simple btn-block" (click)="signUp()">SUBMIT</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- guest number -->
+<!-- <div id="guest-number" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form [formGroup]="gustregister" (ngSubmit)="guest_register()">
+        <div class="modal-header my-modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="text-center">ENTER YOUR EMAIL</h3>
+        </div>
+        <div class="modal-body my-modal-body">
+          <div class="form-group flex-me"> -->
+<!-- <select formControlName="country_code" style="width: 40%;" class="select2"> -->
+<!-- <option value="0" selected>Country Code</option> -->
+<!-- <option *ngFor="let c of country_code; let i = index" [value]="country_code[i].code">
+                {{country_code[i].country}} {{country_code[i].code}}
+              </option> -->
+<!-- </select> -->
+<!-- <input [(ngModel)]="gustregister.mobile_number" type="text" name="number" placeholder="Enter your mobile number" class="form-control"> -->
+<!-- <input type="text" formControlName="mobile_number" name="number" placeholder="Enter your mobile number"
+              class="form-control" minlength="8" maxlength="15"> -->
+<!-- <input type="email" class="form-control"> -->
+
+
+<!-- </div> -->
+<!-- <button (click)="guest_register()" name="button" class="btn btn-simple btn-block">SEND OTP</button> -->
+<!-- <input type="submit" class="btn btn-simple btn-block" value="SEND OTP"> -->
+<!-- <span  style="color:red;">{{errormessage}}</span> -->
+<!-- <div style="color:red;">
+            <div *ngIf="submitted">
+              <span *ngIf="gustregister.get('mobile_number').errors?.required; else elseblock1">Mobile no is
+                required</span>
+              <ng-template #elseblock1>
+                <span *ngIf="gustregister.get('mobile_number').errors?.pattern; else elseblock2">Only numbers are
+                  required</span>
+                <ng-template #elseblock2>
+                  <span *ngIf="gustregister.get('mobile_number').errors?.minlength">Mobile number is not valid</span>
+                </ng-template>
+              </ng-template>
+              <span *ngIf="gustregister.get('mobile_number').errors?.maxlength">Mobile number is not valid</span>
+            </div>
+            <span>{{errormessage}}</span>
+          </div> -->
+<!-- </div>
+
+      </form> -->
+<!-- </div>
+  </div>
+</div> -->
+
+
+<!-- location modal signup time map -->
+<div id="location" class="modal fade" role="dialog" style="z-index: 10000000;">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-body" style="width: 100%;height: 300px;display: none;" id="create_company_profile">
+      </div>
+      <div class="modal-body" style="width: 100%;height: 300px;" id="map2">
+      </div>
+
+
+      <div class="modal-footer my-modal-footer">
+        <button class="btn btn-simple btn-block" data-dismiss="modal" (click)="GetAddressEvent()">SELECT
+          LOCATION</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Gps Modal -->
+<div id="gps" class="modal fade" role="dialog" style="z-index: 10000000;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body my-modal-location">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <img src="assets/images/icon/pin_sm.png">
+        <p>To use this feature the access of the GPS is required.</p>
+        <div class="location-bttn">
+          <button class="btn btn-simple" data-target="#location" data-dismiss="modal" data-toggle="modal">AGREE</button>
+          <button data-dismiss="modal" class="btn btn-third">DENY</button>
+        </div>
+      </div>
+      <!-- <span  style="color:red;">{{errormessage}}</span> -->
+    </div>
+  </div>
+</div>
+
+
+<div id="gpsforlogin" class="modal fade" role="dialog" style="z-index: 10000000;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body my-modal-location">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <img src="assets/images/icon/pin_sm.png">
+        <p>To use this feature the access of the GPS is required.</p>
+        <div class="location-bttn">
+          <button (click)="getCurrentLocationForLogin()" class="btn btn-simple" data-dismiss="modal"
+            data-toggle="modal">AGREE</button>
+          <button (click)="deniedLocation()" class="btn btn-third">DENY</button>
+        </div>
+      </div>
+      <!-- <span  style="color:red;">{{errormessage}}</span> -->
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Involvement Location Modal -->
+<!-- <div id="involvement-location" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" style="width: 100%;height: 300px;" id="create_post_map">
+            </div>
+            <div class="modal-footer my-modal-footer">
+                <button class="btn btn-simple btn-block" data-dismiss="modal" data-toggle="modal"
+                    data-target="#involvement">SELECT LOCATION</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<!-- create profile -->
+<div id="create-profile" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="text-center">CONTINUE AS</h3>
+      </div>
+      <div class="modal-body my-modal-body">
+        <button (click)="open_create_company_profile_page1()" class="btn btn-simple btn-block" data-toggle="modal">A
+          COMPANY</button>
+        <div class="guest-desc">
+          <!-- <p>(This is for agencies, companies, photo studio, teaching institution etc.)</p> -->
+        </div>
+        <button (click)="open_create_personal_profile_page1()" id="individualModalBtn" class="btn btn-simple btn-block" data-toggle="modal">AN
+          INDIVIDUAL</button>
+        <div class="guest-desc">
+          <!-- <p>(This is for individual users like photographers, manufacturers, architect etc.)</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- company profile page 1 -->
+<div id="company-profile-page1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="text-center">CREATE COMPANY PROFILE</h3>
+      </div>
+      <form [formGroup]="create_company_profile_page1" (ngSubmit)="submit_create_company_profile_page1()">
+        <div class="modal-body my-modal-body">
+          <div class="form-group">
+            <input formControlName="username" type="text"  placeholder="Enter username" class="form-control">
+          </div>
+          <div class="form-group">
+            <input formControlName="company_name" type="text" name="company-name" placeholder="Enter company name"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <input formControlName="email" type="email" name="email"  placeholder="Enter Email ID" class="form-control">
+          </div>
+          <div class="form-group">
+            <input formControlName="password" type="password" name="password" placeholder="Create password"
+              class="form-control">
+          </div>
+<!-- 
+          <div class="form-group">
+            <input formControlName="description" type="text"  name="description"
+              placeholder="Enter Description" class="form-control">
+          </div> -->
+
+
+          <div class="form-group">
+            <input formControlName="confirm_password" type="password"  name="confirm-password"
+              placeholder="Confirm password" class="form-control">
+          </div>
+
+          
+
+          
+          <button type="submit" class="btn btn-simple btn-block" data-toggle="modal">Next</button>
+          <!-- data-target="#company-profile-page2" data-dismiss="modal"  -->
+          <div style="color: red">
+            <span>{{errormessage}}</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="company-profile-page2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <span><a href="#company-profile-page1" data-toggle="modal" data-dismiss="modal">
+            <img src="assets/images/icon/left_arrow.png">Back</a></span>
+        <h3 class="text-center">CREATE COMPANY PROFILE</h3>
+      </div>
+      <form [formGroup]="create_company_profile_page2" (ngSubmit)="submit_create_company_profile_page3($event)">
+        <div class="modal-body my-modal-body">
+          <div class="form-group">
+            <input formControlName="address_line1" type="text" name="address" placeholder="Enter/Select Address"
+              class="form-control" id="inp-relate">
+            <button data-toggle="modal" (click)="checkGPSStatus()" class="btn-in"><i
+                class="fa fa-map-marker"></i></button>
+          </div>
+
+          <div class="form-group">
+            <input formControlName="address_line2" type="text" name="address-two" placeholder="Enter address line 1"
+              class="form-control">
+          </div>
+
+          <div class="form-group">
+            <input formControlName="address_line3" type="text" name="address-three" placeholder="Enter address line 2"
+              class="form-control">
+          </div>
+          <div class="form-group" >
+            <textarea formControlName="description" type="text" name="description" placeholder="Add description"
+              class="form-control" style="height: 6rem;"></textarea>
+          </div>
+          <div class="form-group">
+            <select formControlName="bussiness_area" (click)="getemp()" id='seloption' class="form-control">
+              <option hidden>Select Business Area</option>
+              <!-- <option value="" disabled>Select Business Area</option> -->
+              <!-- <option [ngValue]="null" selected>Selec</option> -->
+              <option *ngFor="let b of bussiness_area; let i = index" [value]="bussiness_area[i].id">
+                {{bussiness_area[i].type}}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="emp == 1" class="form-group flex-me">
+            <input type="checkbox" name="accept" (change)="moreEmp($event)"> <span> Need more than 5 Employee Accounts?
+            </span>
+          </div>
+          <div class="form-group ">
+            <select formControlName="year_of_foundation" class="form-control">
+              <option hidden>Year Of Founding</option>
+              <!-- <option value="" disabled>Select Business Area</option> -->
+              <!-- <option [ngValue]="null" selected>Selec</option> -->
+              <option *ngFor="let y of allYears; let i = index" [value]="allYears[i]">
+                {{allYears[i]}}
+              </option>
+            </select>
+            <!-- <input formControlName="year_of_foundation" placeholder="Year Of Founding" id="year_of_foundation" class="form-control" type="number"> -->
+            <!-- <button class="btn-in "><i class="fa fa-calendar "></i></button> -->
+          </div>
+          <label class="beech-me" for="picCompany">
+
+            <div class="prev-me-img">
+              <img id="previewCompanyImg" src="/assets/images/place_image.png" alt=" ">
+            </div>
+          </label>
+
+          <div class="form-group add-pic ">
+            <!-- <img src=" " id="imagefile " class="d-none " style="border-radius:100%;width:70px;height: 70px; " /> -->
+            <input type="file" id="picCompany" class="hide-me" formControlName="picture"
+              (change)="CheckUploadedImage2($event)">
+            <label for="picCompany" class="btn btn-simple btn-block">Add picture</label>
+          </div>
+          <div class="form-group flex-me">
+            <input type="checkbox" name="accept" id="checkme1" (change)="checkValue($event)"><span> <a class="btn-terms"
+                data-target="#terms" data-toggle="modal">Accept Terms & Conditions</a></span>
+            <!-- <input type="checkbox" id="submitCheck" name="accept" onchange="document.getElementById( 'btnCompanyProfileSubmit').disabled=! this.checked;"><span> Accept Terms & Conditions</span> -->
+          </div>
+
+          <button type="submit" id="saves1" class="btn btn-simple btn-block">Save</button>
+          <button class="btn btn-third btn-block " data-dismiss="modal">Cancel</button>
+          <div style="color: red ">
+            <span>{{errormessage}}</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Individual profile modal -->
+
+<div id="individual-profile" class="modal fade " role="dialog ">
+  <div class="modal-dialog ">
+    <div class="modal-content ">
+      <div class="modal-header my-modal-header ">
+        <button type="button " class="close " data-dismiss="modal">&times;</button>
+        <h3 class="text-center ">CREATE INDIVIDUAL PROFILE</h3>
+      </div>
+      <form [formGroup]="create_personal_profile_page1" (ngSubmit)="submit_create_personal_profile_page1($event)" #gfg = "ngForm">
+        <div class="modal-body my-modal-body ">
+          <div class="form-group ">
+            <input formControlName="username" type="text" name="username" placeholder="Enter username"  class="form-control ">
+          </div>
+          <div class="form-group ">
+            <input formControlName="email" type="email"    name="email" placeholder="Enter Email ID"  class="form-control ">
+          </div>
+          <div class="form-group ">
+            <input formControlName="password" type="password" name="password" placeholder="Create password "   class="form-control ">
+          </div>
+          <div class="form-group ">
+            <input formControlName="confirm_password" type="password" name="confirm-password"
+              placeholder="Confirm password " class="form-control ">
+          </div>
+          <div class="form-group ">
+            <input formControlName="name"  type="text " name="name" placeholder="Enter your name"  class="form-control ">
+          </div>
+          <!-- <div class="form-group">
+            <textarea formControlName="description"  type="text" name="description" placeholder="Add Description"
+            class="form-control" style="height: 6rem;"></textarea>
+          </div> -->
+      
+          <div class="form-group ">
+            <select formControlName="profession" class="form-control">
+              <option hidden class="light-color-me">Select Profession</option>
+              <option *ngFor="let b of profession; let i=index" [value]="profession[i]?.id">
+                {{profession[i].type}}
+              </option>
+            </select>
+          </div>
+          <label for="createprofile" class="beech-me">
+
+            <div class="prev-me-img">
+              <img id="previewPersonalImg" src="/assets/images/place_image.png" alt=" ">
+            </div>
+          </label>
+          <div class="form-group ">
+
+            <input type="file" id="createprofile" placeholder="Add pic" class="hide-me" formControlName="picture"
+              (change)="CheckUploadedImage($event)">
+            <label for="createprofile" class="btn btn-simple btn-block">Add picture</label>
+          </div>
+
+          <div class="form-group flex-me " id="ash">
+            <input type="checkbox" name="accept2" id="checkme2"><span><a class="btn-terms" data-target="#terms"
+                data-toggle="modal">Accept Terms & Conditions</a></span>
+          </div>
+
+          <button type="submit" id="saves2" class="btn btn-simple btn-block">SAVE</button>
+          <button class="btn btn-third btn-block " data-dismiss="modal">CANCEL</button>
+          <div style="color: red ">
+            <span>{{errormessage}}</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="terms">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h6>Terms & Conditions</h6>
+      </div>
+      <div class="modal-body insite-terms">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, soluta? Molestiae inventore dolores iste
+          labore quibusdam! Iusto necessitatibus adipisci molestiae veritatis facilis eaque. Corporis consequatur
+          perspiciatis eveniet, ratione sapiente mollitia.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores nesciunt est odio quasi beatae nihil
+          quisquam ipsa corrupti provident, inventore itaque, accusamus, facilis soluta eos et voluptates non assumenda
+          fugit?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero perspiciatis eaque iste recusandae odio
+          aspernatur, ad dolorem quae totam illum vitae explicabo amet reprehenderit consequatur iure fugiat eos alias
+          ut?</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--- Modals End------>
+
+<!--------------------------- Modal Start--------------------------------->
+<div id="send-feedback" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="text-center">SEND US FEEDBACK</h3>
+      </div>
+      <div class="modal-body my-modal-body">
+        <div class="form-group">
+          <textarea name="feed-back" [(ngModel)]="feedback" rows="5" placeholder="Send us mail"
+            class="form-control"></textarea>
+        </div>
+        <div class="feedback-para">
+          <p>Thank you for sharing your thoughts, we value your opinion! INSITE was developed for all of you in the
+            architecture & design community. It is a work in progress and we are determined to keep improving it in
+            order to promote community, knowledge and discussion on all architecture and design related topics.
+            Learning about your experience using INSITE is enormously helpful.</p>
+        </div>
+        <button class="btn btn-simple btn-block" (click)="sendFeedback()">SEND</button>
+        <button class="btn btn-simple btn-block" id="close-feedbackModal" data-dismiss="modal">CANCEL</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--------------------------- Modal End-------------------------------->

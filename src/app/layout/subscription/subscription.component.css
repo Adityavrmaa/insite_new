@@ -1,0 +1,63 @@
+.account-name{
+    margin: 70px 0 20px 0;
+}
+.account-name h6{
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.include{
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.payble{
+    font-weight: 600;
+}
+input[type=checkbox]{
+    width: 20px;
+    height: 20px;
+}
+
+.account-name{
+    margin: 70px 0 20px 0;
+}
+.account-name h6{
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.include{
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.payble{
+    font-weight: 600;
+}
+.card-check ul li{
+    color: #1e1e20;
+    cursor: pointer;
+}
+.card-check ul li img{
+    width: 22px;
+    margin: 0 3px;
+}
+.subsText{
+    color: black;
+    font-size: 15px;
+}
+.card{
+    padding: 5%;
+    color: black;
+    /* font-size: 10px; */
+}
+.cardnum{
+    width: 90%;
+    height: 30%;
+    color: black;
+    font-size: 20px;
+}
+.account-name>p{
+    font-size: 16px;
+}
+
+.InputElement{
+    border: 1px solid #ced4da !important;
+}

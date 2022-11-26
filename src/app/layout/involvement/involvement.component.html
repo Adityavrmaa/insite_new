@@ -1,0 +1,670 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row involvement-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-11">
+          <div
+            *ngIf="!is_reported"
+            class="dropdown flag-drop flag-margn flag-1"
+          >
+            <button
+              class="dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img class="flag" src="assets/images/icon/flag.png" />
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <label *ngFor="let reason of report_reasons" class="dropdown-item"
+                ><input
+                  type="radio"
+                  (click)="reportPost(reason.id)"
+                  name="choose"
+                />{{ reason.reason }}</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+            <div class="dropdown">
+              <a
+                *ngIf="postDetail['created_by'] == username"
+                class="btn btn-more dropdown-toggle"
+                routerLink="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fa fa-ellipsis-v"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a
+                  *ngIf="postDetail['created_by'] == username"
+                  class="dropdown-item"
+                  routerLink="javascript:void(0);"
+                  data-target="#remove"
+                  data-toggle="modal"
+                  >Remove Post</a
+                >
+                <a
+                  *ngIf="postDetail['created_by'] == username"
+                  class="dropdown-item"
+                  routerLink="javascript:void(0);"
+                  [routerLink]="['/edit-post', this.post_id]"
+                  >Edit Post</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+          <div class="inv-heading">
+            <h4>
+              {{ projectType }} {{ project_category }}
+              <span>{{ created_on }}</span>
+            </h4>
+            <h4>
+              {{ postname }} |
+              <span class="cursor fw-500-in" (click)="navigateProfile()">
+                {{ created_by }}
+              </span>
+            </h4>
+            <!-- <h4> {{userData.username}}</h4> <h4> {{userData.company_detail.name}}</h4> -->
+            <!-- <h4>ARCHITECTURE</h4> -->
+            <p>{{ postlocation }}</p>
+          </div>
+          <div class="inv-img" *ngIf="post_images.length > 0">
+            <ul>
+              <li *ngFor="let image of _albums; let i = index">
+                <a routerLink="JavaScript:void(0);" data-toggle="modal">
+                  <img [src]="image.src" (click)="open(i)" />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="inv-details">
+            <h6><strong>Description</strong></h6>
+            <p>{{ description }}</p>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-12 col-sm-12 col-12 rep-me">
+          <div class="inv-right-heading">
+            <h6>
+              <strong>Involvement</strong>
+              <span *ngIf="isMarkInv"
+                ><button
+                  type="button"
+                  class="btn-yellow-circle"
+                  data-toggle="modal"
+                  (click)="openMarkInvDialog()"
+                >
+                  +
+                </button></span
+              >
+            </h6>
+          </div>
+
+          <div
+            class="inv-right-details"
+            *ngFor="let allinvolvement of involvements_Arraykeys"
+          >
+            <h6 class="iran">
+              <strong>{{ allinvolvement }}</strong>
+            </h6>
+            <div class="row">
+              <div
+                class="col-lg-2 col-md-2 col-sm-2 col-2"
+                *ngFor="let involvement of involvements[allinvolvement]"
+              >
+                <a
+                  routerLink="JavaScript:void(0);"
+                  (click)="getName(involvement?.name)"
+                >
+                  <div class="product-img">
+                    <img
+                      src="{{
+                        involvement?.profile_image ||
+                          '/assets/images/logo-collapse.png'
+                      }}"
+                    />
+                  </div>
+                  <div class="product-info">
+                    <h6>
+                      {{ involvement?.company_name }} {{ involvement?.name }}
+                    </h6>
+                    <!-- [routerLink]='["/users-profile", involvement?.name]' -->
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="bottom-comment">
+            <ul>
+              <li>
+                <a
+                  routerLink="JavaScript:void(0);"
+                  data-toggle="modal"
+                  data-target="#likes"
+                  ><img src="assets/images/icon/chat.png" />
+                  <p class="padding-0">{{ total_comments }}</p>
+                </a>
+              </li>
+
+              <li>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div class="dropdown flag-drop flag-margn">
+                    <button
+                      class="dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <a routerLink="JavaScript:void(0);"
+                        ><img src="assets/images/icon/share.png" />
+                        <p class="padding-0"></p>
+                      </a>
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <a
+                        href="https://www.linkedin.com/shareArticle?mini=true&url=https://insite.city/involvement/{{
+                          post_id
+                        }}"
+                        target="_blank"
+                      >
+                        <label class="dropdown-item"> Share on linkedin</label>
+                      </a>
+                      <a
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://insite.city/involvement/{{
+                          post_id
+                        }}"
+                        target="_blank"
+                      >
+                        <label class="dropdown-item"> Share on Facebook</label>
+                      </a>
+                      <a
+                        href="https://twitter.com/intent/tweet?original_referer=https://insite.city/involvement/{{
+                          post_id
+                        }}"
+                        target="_blank"
+                      >
+                        <label class="dropdown-item"> Share on twitter</label>
+                      </a>
+                      <a></a>
+                      <label (click)="copyLink()" class="dropdown-item"
+                        >Copy link</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- like  unlike  -->
+              <li>
+                <a
+                  href="javascript:void(0)"
+                  [ngStyle]="is_liked ? { color: 'blue' } : { color: 'black' }"
+                >
+                  <!-- <img
+                    (click)="likeDislikePost(is_liked)"
+                    src="assets/images/icon/like.png"
+                  /> -->
+                  <i
+                    class="bi bi-hand-thumbs-up-fill"
+                    style="font-size: 25px"
+                    (click)="likeDislikePost(is_liked)"
+                  ></i>
+                  <p class="padding-0">{{ total_likes }}</p>
+                </a>
+              </li>
+
+              <!-- like  unlike end  -->
+
+              <li *ngIf="createdByuser == false">
+                <a routerLink="JavaScript:void(0);"
+                  ><img
+                    (click)="navigateOnMap(lat, lon)"
+                    src="assets/images/icon/sent_mail.png"
+                  />
+                  <p class="padding-0"></p>
+                </a>
+              </li>
+              <li *ngIf="createdByuser == true">
+                <a
+                  data-toggle="modal"
+                  data-target="#enter-user-tags"
+                  routerLink="JavaScript:void(0);"
+                  ><img src="assets/images/icon/megaphone.png" />
+                  <p class="padding-0"></p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================ -->
+      <div class="row">
+        <div class="col-6">
+          <div class="likes-list" style="height: 300px; overflow-y: auto">
+            <ul *ngFor="let c of comments; let i = index">
+              <li>
+                <div class="likes-flex">
+                  <div class="likes-img">
+                    <img
+                      src="{{
+                        comments[i].comment_by.profile_image ||
+                          'assets/images/1099386850.jpg'
+                      }}"
+                    />
+                  </div>
+                  <div class="likes-name">
+                    <h6>{{ comments[i].comment_by.company_name }}</h6>
+                    <h6>{{ comments[i].comment_by.name }}</h6>
+                    <p>{{ comments[i].created }}</p>
+                  </div>
+
+                  <div class="likes">
+                    <a routerLink="JavaScript:void(0);">
+                      <img
+                        (click)="
+                          likeDislikeComment(
+                            comments[i].id,
+                            comments[i].is_liked
+                          )
+                        "
+                        src="assets/images/icon/like.png"
+                      /><span>{{ comments[i].total_like }}</span>
+                    </a>
+
+                    <!-- ================================== -->
+                    <div class="pt-2 reply" style="cursor: pointer">
+                      <p data-toggle="modal" data-target="#reply">Reply</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="likes-info">
+                  <p>{{ comments[i].content }}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- ===================== -->
+    </div>
+  </div>
+</div>
+<!-- <app-footer></app-footer> -->
+
+<!--------------------------- Modal Start--------------------------------->
+<div
+  class="modal fade"
+  id="my-pic"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content content-edit">
+      <div class="modal-body img-modal">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <img id="show_img" src="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="my-videos"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content content-edit">
+      <div class="modal-body img-modal">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <video controls>
+          <source src="assets/images/my-video.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="likes" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <button
+        class="close"
+        id="comment_close"
+        style="text-align: right; margin-right: 10px"
+        data-dismiss="modal"
+      >
+        &times;
+      </button>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="likes-list" style="height: 350px; overflow-y: scroll">
+              <ul *ngFor="let c of comments; let i = index">
+                <li>
+                  <div class="likes-flex">
+                    <div class="likes-img">
+                      <img
+                        src="{{
+                          comments[i].comment_by.profile_image ||
+                            'assets/images/1099386850.jpg'
+                        }}"
+                      />
+                    </div>
+                    <div class="likes-name">
+                      <h6>{{ comments[i].comment_by.company_name }}</h6>
+                      <h6>{{ comments[i].comment_by.name }}</h6>
+                      <p>{{ comments[i].created }}</p>
+                    </div>
+
+                    <div class="likes">
+                      <a routerLink="JavaScript:void(0);">
+                        <img
+                          (click)="
+                            likeDislikeComment(
+                              comments[i].id,
+                              comments[i].is_liked
+                            )
+                          "
+                          src="assets/images/icon/like.png"
+                        /><span>{{ comments[i].total_like }}</span>
+                      </a>
+
+                      <!-- ================================== -->
+                      <div class="pt-2 reply" style="cursor: pointer">
+                        <p data-toggle="modal" data-target="#reply">Reply</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="likes-info">
+                    <p>{{ comments[i].content }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="comment">
+              <div class="form-group">
+                <textarea
+                  type="text"
+                  id="content"
+                  [formControl]="content"
+                  class="form-control"
+                  placeholder="Write a comment"
+                ></textarea>
+              </div>
+              <div style="color: red">
+                <span>{{ errormessage }}</span>
+              </div>
+              <button class="btn btn-yellow" (click)="commentPost()">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================reply================= -->
+<div
+  class="modal fade"
+  id="reply"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form
+          novalidate
+          [formGroup]="replayForm"
+          (ngSubmit)="replySubmit(replayForm.value)"
+        >
+          <textarea class="form-control" formControlName="name"></textarea>
+          <button type="submit" class="btn btn-warning mt-2">Replay</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--------------------------- Modal End-------------------------------->
+
+<!-- Post Question Modal -->
+<div id="involvement" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3 class="text-center">MARK INVOLVEMENT</h3>
+      </div>
+      <div class="modal-body my-modal-body" [formGroup]="markinvolvementForm">
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="{{ isFullMarkForm ? 'Product Manufacturers' : 'Execution' }}"
+            readonly
+          />
+          <!-- <select disabled formControlName="involvement_type" class="form-control">
+            <option   class="light-color-me">Execution</option>
+            <option *ngFor="let type of involvements_types" value="{{type?.id}}">{{type?.type}}</option>
+          </select> -->
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="element"
+            placeholder="Enter keyword for element"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="material"
+            placeholder="Enter keyword for material"
+            class="form-control"
+          />
+        </div>
+    <div *ngIf="isFullMarkForm">
+        <label class="beech-me" for="addpic">
+          <div class="prev-me-img">
+            <img id="previewImg" src="/assets/images/place_image.png" alt=" " />
+          </div>
+        </label>
+        <div class="form-group">
+          <input
+            type="file"
+            id="addpic"
+            placeholder="Add pic"
+            class="hide-me"
+            (change)="CheckUploadedImage($event)"
+          />
+          <label for="addpic" class="btn btn-simple btn-block"
+            >Upload picture</label
+          >
+        </div>
+
+        <div class="form-group">
+          <input
+            type="text"
+            formControlName="link"
+            placeholder="Embed the link with the picture"
+            class="form-control"
+          />
+        </div>
+
+        </div>
+
+        <div style="color: red">
+          <span>{{ errormessage }}</span>
+        </div>
+
+        <button
+          type="submit"
+          (click)="submitMarkInvolvementForm()"
+          class="btn btn-simple btn-block"
+          data-toggle="modal"
+        >
+          SAVE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="remove" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body logout-modal-body">
+        <h3 class="text-center">Alert</h3>
+        <p>Do you really want to remove this post</p>
+        <button class="btn btn-third" data-dismiss="modal">NO</button>
+        <button
+          class="btn btn-simple"
+          data-dismiss="modal"
+          (click)="removePost()"
+        >
+          YES
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="enter-user-tags" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <form [formGroup]="inviteForm">
+      <div class="modal-content">
+        <div class="modal-header my-modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+          <h3 class="text-center">Select Users</h3>
+        </div>
+        <div class="modal-body my-modal-body">
+          <div class="form-group col-md-6 mb-1">
+            <label class="">Add UserTags </label>
+
+            <ng-multiselect-dropdown
+              style="padding: 20px"
+              (change)="selectedTags()"
+              [ngModelOptions]="{ standalone: true }"
+              [placeholder]="'All UserTags'"
+              [data]="taggedUsrsList"
+              [(ngModel)]="selectedTagsss"
+              [settings]="dropdownSettings"
+              (onSelect)="onItemSelect($event)"
+            >
+            </ng-multiselect-dropdown>
+            <!-- (onSelectAll)="onSelectAll($event)" -->
+          </div>
+          <div class="form-group col-md-6 mb-1" style="padding-left: 10px">
+            <label>Email</label>
+            <input
+              type="text"
+              formControlName="email"
+              placeholder="Email"
+              class="form-control"
+            />
+          </div>
+          <!-- <div class="form-group">
+                    <mat-chip-list #chipList aria-label="userTaggs selection">
+                        <mat-chip *ngFor="let u of userTaggs" [selectable]="selectable"
+                        [removable]="removable" (removed)="remove2(u)" >
+                            {{u?.username}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                        <input  [formControl]="userTag" placeholder="Tag..."
+                            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add2($event)"
+                            class="form-control">
+                    </mat-chip-list>
+                </div> -->
+          <!-- <div class="form-group">
+                
+                    <mat-list >
+                        <mat-list-item *ngFor="let user of userTagsList" (click)="addUserTag(user)">
+                            <img mat-list-avatar [src]="user.profile_image" >
+                          <h4 mat-line >{{user.username}}</h4>
+                          <h6 class="em-color" mat-line> {{user.email}} </h6>
+                        </mat-list-item>
+                    </mat-list>
+                </div> -->
+          <button
+            class="btn btn-simple btn-block"
+            (click)="invite()"
+            data-dismiss="modal"
+          >
+            Invite
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

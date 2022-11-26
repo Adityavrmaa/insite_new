@@ -1,0 +1,36 @@
+.chat-heading-btn{
+    margin: 25px 0;
+}
+
+.chat-heading-btn>a{
+    color: #000;
+  }
+.chat-heading-btn>a>img{
+    margin-right: 5px;
+}
+.new-start{
+    height: 300px;
+    overflow: auto;
+}
+.new-start ul li{
+  border: 1px solid #e6e6e6;  
+  padding: 14px 10px;
+  margin: 3px 0;
+  display: flex;
+  align-items: center;
+}
+.new-start ul li>h6>span{
+   float: right;
+  }
+  .new-start ul li>h6{
+    font-size: 14px;
+    width: 100%;
+   }
+
+   .new-start li>img{
+     width: 35px;
+     min-width: 35px;
+     height: 35px;
+     margin-right: 10px;
+     border-radius: 50%;
+   }

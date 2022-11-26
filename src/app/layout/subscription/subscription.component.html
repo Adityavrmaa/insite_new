@@ -1,0 +1,99 @@
+
+<app-header *ngIf=false></app-header>
+<section class="subscription-section">
+    <div class="container subsText">
+        <div class="row">
+            <div class="offset-lg-2 offset-md-2 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="form-group account-name">
+                    <h6>Account Type</h6>
+                    <p> {{account_type}} - {{plan_name}}</p>
+                </div>
+                <h6 class="include">Features Include</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <!-- <tr *ngFor="let f of features">
+                                <th *ngFor="let feat of f | keyvalue">{{feat.key}}</th>
+                                <td *ngFor="let feat of f | keyvalue">
+                                    <input type="checkbox" [checked]="feat.value" readonly/>
+                                </td>
+                            </tr> -->
+                            <tr>
+                                <th>Users Or Account</th>
+                                <td><label>{{users_or_account}}</label></td>
+                            </tr>
+                            <tr>
+                                <th>Add Pictures Link To Others Posts </th>
+                                <td><input type="checkbox" [checked]="add_pictures_link_to_others_posts"  onclick="return false" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Comment On Existing Posts</th>
+                                <td><input type="checkbox" [checked]="comment_on_existing_posts"  onclick="return false" /></td>
+                            </tr>
+                            <tr>
+                                <th>Create Posts</th>
+                                <td><input type="checkbox" [checked]="create_posts"  onclick="return false" /></td>
+                            </tr>
+                            <tr>
+                                <th>Mark Involvement In Others Posts</th>
+                                <td><input type="checkbox" [checked]="mark_involvement_in_others_posts"  onclick="return false" /></td>
+                            </tr>
+                            
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="subscription-desc">
+                    <p>Amount to be paid: <span class="payble"> ${{subscriptiondata?.price}}</span></p>
+                </div>
+                <div class="checkout text-center">
+                    <button class="btn btn-black btn-block"  (click)="Pricecheck()" > PROCEED TO PAY</button>
+  
+                       
+                       
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<div id="checkout" class="modal fade" role="dialog" style="z-index: 10000000;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <div class="modal-body my-modal-location">
+                <div class="container card">
+                    <form novalidate (ngSubmit)="proceedtopay()" [formGroup]="stripeTest">
+                        <!-- <div class="form-group"> -->
+                            <input class="form-control" type="text" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)" formControlName="name" placeholder="Enter card holder name" />
+                        <!-- </div> -->
+                        <div id="card-element" class="field"></div>
+                        <button type="submit" class="btn btn-black btn-block">
+                            PROCEED TO PAY
+                        </button>
+                    </form> <br>
+                    <div style="color: red;" ><span>{{errormessage}}</span></div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="paidsuccess" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header my-modal-header">
+                    <h3 class="text-center">SUCCESS</h3>
+                </div>
+                <div  class="modal-body modal-delete">
+                        <h6 class="text-center">Paid Successfully</h6>
+                </div>
+                <div class="modal-body modal-delete">
+                    <button style="width: 50%; margin-left: 25%;" class="btn btn-black btn-block" data-dismiss="modal" (click) = "setHome()" [routerLink]="'/home'">OK</button>
+                    <!-- <button class="btn btn-simple" (click)="deleteColleague()" >YES</button> -->
+                </div>
+            </div>
+        </div>
+</div>

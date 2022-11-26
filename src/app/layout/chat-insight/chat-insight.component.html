@@ -1,0 +1,218 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row chat-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="recent-btn">
+                        <a routerLink="/chat"><img src="assets/images/icon/chat.png"> Recent Chat</a>
+                    </div>
+                </div>
+                <div *ngIf = "blockedByUser == userId || blockedByUser == '0' || !blockedByUser"  class="col-lg-6">
+                    <div class="cog">
+                        <div  class="dropdown">
+                            <button class="btn-setting" type="button" data-toggle="dropdown">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </button>
+                            <div  class="dropdown-menu set-right">
+                                <a class="dropdown-item"    (click) = "clearChat()" href="JavaScript:void(0);" >Clear Chat</a>
+                                <a class="dropdown-item" *ngIf = "blockedUser == '0' || !blockedUser"   (click) = "BlockChatUser('1')"  >Block</a>
+                                <a  class="dropdown-item"  *ngIf = "blockedUser == '1'" (click) = "BlockChatUser('0')"  >Unblock</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-lg-4 col-md-5 col-sm-12 col-12">
+                    <div class="chat-list chat-margin">
+                        <ul>
+                            <li *ngFor = "let user of chatUserarr">
+                                <a href="JavaScript:void(0);">
+                                    <div class="chat-user">
+                                        <div class="chat-img">
+                                            <img src="{{user?.profile_image}}">
+                                            <i class="fa fa-circle active-user"></i>
+                                        </div>
+                                        <div class="chat-user-name hvr-forward">
+                                            <h6>{{user?.name}}</h6>
+                                            <p><span><img src="{{user?.profile_image}}"></span> Lorem ipsum is dummy text.</p>
+                                        </div>
+                                        <div class="unread-msg">
+                                            <p>{{user?.timeStamp | date:'shortTime'}}</p>
+                                            <p class="msg-count">02</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="offset-lg-2 col-lg-8 offset-md-2 col-md-8 col-sm-12 col-12">
+                    <div class="chatter">
+                        <div class="chatter-img">
+                            <img src="{{ProfileImage}}"/>
+                            <i *ngIf = "ProfileonlineStatus == 1" class="fa fa-circle active-user"></i>
+                            <i  *ngIf = "ProfileonlineStatus == 0" class="fa fa-circle inctive-user"></i>
+                        </div>
+                        <div class="chatter-info">
+                            <h6>{{ProfileName}}</h6>
+                        </div>
+                    </div>
+                    <div class="conversation-box">
+                          <form  (ngSubmit) = "sendMessage()" >
+                        <div class="chatBoxed">
+                            <div class="converstation">
+                                <!-- <div id="neeche"></div> -->
+                                <div class="chatRow" *ngFor='let data of SingleUserChat' >
+                                    <div  class="sender" *ngIf='chatId == data.senderId'>
+                                        <!-- <div class="sender-img d-none d-sm-block">
+                                            <img src="{{data.profilePic}}">
+                                        </div> -->
+                                        <div class="sender-msg">
+                                            <div class="reply">
+                                                <!-- <h6>How may i help you ?</h6> -->
+                                                <p *ngIf = "data.mediaType == 'text'">{{data.content}}</p>
+                                               <img (click)="zoomImg( imageUrl + data.thumnilImageurl)" *ngIf = "data.mediaType == 'image'" [src]=" imageUrl +  data.thumnilImageurl">
+                                               <!-- <a   *ngIf = "data.mediaType == 'Document'" target="" [href]="  +  data.thumnilImageurl"> </a>   -->
+                                               <button   *ngIf = "data.mediaType == 'Document'" type="button" (click)='openFile(imageUrl +  data.thumnilImageurl)' > Download File </button>
+                                               
+                                            </div>
+                                            <div class="sender-name">
+                                                <p><span>{{data.timeStamp | date:'shortTime'}}</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div  class="receiver" *ngIf='userId == data.senderId'>
+                                        <div class="receiver-msg">
+                                            <div class="reply-r">
+                                                <!-- <h6>How may i help you ?</h6> -->
+                                                <p *ngIf = "data.mediaType == 'text'">{{data.content}}</p>
+                                                <img  (click)="zoomImg( imageUrl + data.thumnilImageurl)" *ngIf = "data.mediaType == 'image'" [src]=" imageUrl +  data.thumnilImageurl"/>
+                                                
+                                                <button   *ngIf = "data.mediaType == 'Document'" type="button" (click)='openFile(imageUrl +  data.thumnilImageurl)' > Download File </button>
+                                                <div class="tick-me">
+                                                    <img src="assets/images/icon/grey_tick.png"/>
+                                                   <!-- <img src="assets/images/icon/green_tick.png"/> -->
+                                                 </div>
+                                            </div>
+                                            <div class="receiver-name">
+                                                <p><span>{{data.timeStamp | date:'shortTime'}}</span></p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="receiver-img d-none d-sm-block">
+                                            <img src="{{senderProfilePic}}">
+                                        </div> -->
+                                    </div>
+                                </div>                               
+                            
+                              
+                               
+                            </div>
+                        </div>
+                        <div class="chat-send">
+                            <div class="d-flex pos-rel w-100">
+                                <button type="button" class="btn left" data-toggle="modal" data-target="#emoji"><i *ngIf = "recentMessage?.blocked != 1" class="fa fa-smile-o"></i>
+                                </button> 
+                               
+                                <div class="get-img" *ngIf="fileImg && Ftypes == 'image'">
+                                    <i class="fa fa-image"></i>
+                                    Image
+                                    <span><button type="button" (click) = "removeImage()">&times;</button></span>
+                                </div>
+                                <div class="get-img" *ngIf="fileImg && Ftypes != 'image'">
+                                    <i class="fa fa-file"></i>
+                                    File
+                                    <span><button type="button" (click) = "removeImage()">&times;</button></span>
+                                </div>                       
+                                <input *ngIf = "blockedUser != '1'" class="msg-type" [ngModelOptions]="{standalone: true}" [(ngModel)]='_message' placeholder="Enter Text"/>
+                                <input  *ngIf = "blockedUser != '1'" type="file" (change)="singleFile($event)" class="hide-me" id="document-file" name="document" accept=
+                            "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+                            text/plain, application/pdf/"/>
+                            <input  *ngIf = "blockedUser != '1' " type="file" (change)="singleFile($event)" class="hide-me"   id="gallery-file" name="image" accept="image/*"/>
+                                <button *ngIf = "blockedUser != '1'"type="button" class="btn right" data-toggle="modal" data-target="#file-attach">
+                                    <i *ngIf = "blockedUser != '1'" class="fa fa-paperclip"></i>
+                                </button>                   
+                            </div>
+                            <span>
+                                <button *ngIf = "blockedUser != '1'" class="btn-send" type="submit"><i class="fa fa-paper-plane"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-12">
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->
+<!--------------------------- Modal Start--------------------------------->
+<div class="modal fade" id="file-attach" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content content-edit">
+            <div class="modal-body file-attach">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <ul>
+                    <li> 
+                        
+                        <label for="document-file"><img src="assets/images/icon/document.png">
+                        <p>Document</p></label>
+                    </li>
+                    <li>
+                        <label for="gallery-file"><img src="assets/images/icon/gallery_color.png">
+                        <p>Gallery</p></label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="zoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md " data-dismiss="modal" role="document">
+        <div class="modal-content content-edit">
+            <div class="modal-body zooming-img">
+                <img [src]="myKey"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="emoji">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- <emoji-mart title=""  ></emoji-mart>  -->
+                 <!-- <emoji-mart set="emojione"></emoji-mart> -->
+                <emoji-mart class="emoji-mart" set="emojione" [i18n]="{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"  title="Pick your emoji…" (emojiClick)="addEmoji($event)"></emoji-mart> 
+                <!-- <emoji-mart
+                  [style]="{ position: 'absolute', bottom: '20px', right: '20px' }"
+                ></emoji-mart>  -->
+                <!-- <emoji-mart
+                  [i18n]="{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"
+                >
+            </emoji-mart> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal fade" id="zoom">
+    <div class="modal-dialog">
+        <div class="modal-body">
+            wlkdhfkweqhf
+            
+        </div>
+    </div>
+</div> -->
+<!--------------------------- Modal End-------------------------------->
+
+
+
+
+
+<app-footer></app-footer>

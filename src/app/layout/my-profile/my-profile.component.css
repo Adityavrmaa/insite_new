@@ -1,0 +1,88 @@
+.ccode *{
+ display: block;
+}
+
+
+.map-rel{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .map-absol{
+    position: absolute;
+    background: transparent;
+    border: none;
+  }
+  .map-absol img{
+    width: 28px;
+  }
+
+
+  
+/* =========================== */
+
+
+#main #faq .card {
+  margin-bottom: 30px;
+  border: 0;
+}
+
+#main #faq .card .card-header {
+  border: 0;
+  border-radius: 2px;
+  padding: 0;
+}
+
+#main #faq .card .card-header .btn-header-link {
+  color: #fff;
+  display: block;
+  text-align: left;
+  color: #222;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+
+
+#main #faq .card .card-header .btn-header-link.collapsed {
+  color: rgb(0, 0, 0);
+}
+
+.btn.focus, .btn:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+
+.card-header {
+  background-color: transparent;
+}
+#main #faq .card .collapse {
+  border: 0;
+}
+
+#main #faq .card .collapse.show {
+  line-height: 30px;
+  color: #222;
+}
+
+.accordion_card_title{
+    text-align: start;
+}
+
+.accordion_card_title p {
+  color: #222;
+  font-size: 14px!important;
+}
+.card .card-body {
+  border-left: 0;
+  border-right: 0;
+}
+
+.card {
+
+  background-color: transparent!important;
+}

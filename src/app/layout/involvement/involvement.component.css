@@ -1,0 +1,20 @@
+.cursor{
+cursor: pointer;
+}
+.fw-500-in{
+    font-weight: 500;
+    font-family: inherit;
+}
+
+
+.dropdown-list[_ngcontent-uja-c3] {
+  
+    padding: 6px!important;
+
+}
+
+.multiselect-dropdown .dropdown-btn{
+ 
+    padding: 2px!important;
+  
+}

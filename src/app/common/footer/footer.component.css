@@ -1,0 +1,27 @@
+#footish {
+    display: none;
+}
+
+.ui-datepicker-calendar {
+    display: none;
+}
+
+.ui-datepicker-month {
+    display: none;
+}
+
+.ui-datepicker-prev {
+    display: none;
+}
+
+.ui-datepicker-next {
+    display: none;
+}
+.fb-icon {
+    width: 28 !important;
+    height: 28 !important;
+}
+
+#scrollToBottom{
+  cursor: pointer;
+}

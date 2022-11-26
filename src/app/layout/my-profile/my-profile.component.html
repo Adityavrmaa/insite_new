@@ -1,0 +1,788 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row profile-wrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 col-md-12 col-sm-12 col-12 border-right-gray">
+          <div class="profile-flex">
+            <div class="profile-img img-box">
+              <label class="fileInput" for="profile-pic">
+                <div class="img">
+                  <img
+                    class="imagefile"
+                    src="{{ profiledata?.profile_image }}"
+                  />
+                </div>
+                <!-- <input type="file" onChange="singleFiles(event)" id="profile-pic" name="profile-img" class="hide-me"> -->
+                <!-- <i class="fa fa-pencil"></i> -->
+              </label>
+            </div>
+            <div class="profile-heading">
+              <h6 class="fw-600 text-uppercase">{{ showName }}</h6>
+              <h6 class="fw-600 text-uppercase">{{ profiledata?.username }}</h6>
+            </div>
+          </div>
+          <div class="inv-details">
+            <p>{{ profiledata?.about }}</p>
+          </div>
+          <div class="followers">
+            <ul>
+              <!-- <li><button class="btn btn-primary btn-sm" (onClick)="postFollow()">Follow</button></li> -->
+              <!-- <li><button class="btn btn-primary btn-sm">Unfollow</button></li> -->
+              <li>
+                <img src="assets/images/icon/hearts.png" /><span>{{
+                  profiledata?.total_likes
+                }}</span>
+              </li>
+              <li>
+                Followers
+                <span>{{
+                  profiledata?.total_follow_to + followdata?.followed
+                }}</span>
+              </li>
+              <li>
+                Following <span>{{ profiledata?.total_follow_by }}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="my-details">
+            <div class="table-responsive">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <th>Type of Account</th>
+                    <td>{{ profiledata?.profile_type }}</td>
+                  </tr>
+                  <tr>
+                    <th>Email ID</th>
+                    <td>{{ profiledata?.email }}</td>
+                  </tr>
+                  <!-- <tr>
+                                      <th>Mobile Number</th>
+                                      <td>{{profiledata?.mobile_number}}</td>
+                                  </tr> -->
+                  <tr *ngIf="companyname">
+                    <th>Year of Founding</th>
+                    <td>
+                      {{ profiledata?.company_detail?.year_of_foundation }}
+                    </td>
+                  </tr>
+                  <!-- <tr>
+                                      <th>Occupation</th>
+                                      <td>{{profiledata?.company_detail?.description}}</td>
+                                  </tr> -->
+                  <tr *ngIf="companyname">
+                    <th>Address</th>
+                    <td>
+                      {{ profiledata?.company_detail?.address_line1 }},{{
+                        profiledata?.company_detail?.address_line2
+                      }},{{ profiledata?.company_detail?.address_line3 }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div *ngIf="companyname" class="my-projects">
+            <div class="add-projects">
+              <h6>
+                My Projects
+                <!-- <span
+                  ><button
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#involvement"
+                  >
+                    &#43;
+                  </button></span
+                > -->
+              </h6>
+              <h6>Total Projects {{ profiledata?.total_projects }}</h6>
+            </div>
+            <div class="project-list">
+              <!-- <button type="button" data-toggle="modal"
+                                      data-target="#enter-user-tags" >&#43;</button> -->
+              <ul class="scroll-width myprofileli">
+                <li class="main_li" *ngFor="let projectdata of projectdata">
+                  <div class="box-shadow">
+                    <a
+                      [routerLink]="['involvement/' + projectdata?.id]"
+                      class="project-view"
+                    >
+                      <img
+                        src="{{ projectdata?.post_image?.image }}"
+                        (contextmenu)="onRightClick($event)"
+                      />
+                      <div class="clip-head">
+                        <h6>
+                          {{ projectdata?.name }}'s Projects |
+                          {{ projectdata?.project_type?.type }}
+                        </h6>
+                      </div>
+                      <div class="bottom-info">
+                        <ul>
+                          <li class="my-para">
+                            <p>
+                              {{ projectdata?.city }},
+                              {{ projectdata?.country }}
+                            </p>
+                            <p>{{ projectdata?.year }}</p>
+                          </li>
+                          <li class="my-plane">
+                            <button routerLink="/involvement">
+                              <i class="fa fa-paper-plane"></i>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="clearfix"></div>
+            <div class="my-social-link d-block">
+              <div class="project-social">
+                <a
+                  (click)="openLink(socialLinks1)"
+                  ngDefaultControl
+                  [ngModel]="socialLinks1"
+                  style="color: black"
+                >
+                  <i class="fa fa-facebook"></i>
+                </a>
+                <a
+                  (click)="openLink(socialLinks2)"
+                  ngDefaultControl
+                  [ngModel]="socialLinks2"
+                  style="color: black"
+                >
+                  <i class="fa fa-twitter"></i>
+                </a>
+                <a
+                  (click)="openLink(socialLinks3)"
+                  ngDefaultControl
+                  [ngModel]="socialLinks3"
+                  style="color: black"
+                >
+                  <i class="fa fa-instagram"></i>
+                </a>
+                <a
+                  (click)="openLink(socialLinks4)"
+                  ngDefaultControl
+                  [ngModel]="socialLinks4"
+                  style="color: black"
+                >
+                  <i class="fa fa-google"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="inv-details"  *ngIf="checkMenufacturer; ">
+            <h6 class="fw-600 text-uppercase"> Description</h6>
+            <p>{{ profiledata?.company_detail?.description }}</p>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="col-lg-5 col-md-12 col-sm-12 col-12 text-right">
+          <div class="dropdown">
+            <a
+              class="btn btn-more dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fa fa-ellipsis-v"></i>
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a
+                class="dropdown-item"
+                href="javascript:void(0);"
+                routerLink="/edit-profile"
+                >Edit Profile</a
+              >
+            </div>
+          </div>
+          
+
+          <!-- ====================   new   ========================= -->
+
+          <div id="main">
+            <div class="container">
+
+              <h6 class="fw-600 text-uppercase" style="margin-left: 1rem;text-align: start;" *ngIf="colleagueHideIndividual">COLLEAGUE LIST</h6>
+              
+              <div class="accordion" id="faq" style="height: 25rem;overflow:auto;">
+                
+                <div class="card" *ngFor="let c of colleagues; let i = index">
+                  <div class="card-header" id="faqhead1">
+                    <a
+                      href="#"
+                      class="btn btn-header-link fw-bold"
+                      data-toggle="collapse"
+                      [attr.data-target]="'#demo' + (i + 1)"
+                      aria-expanded="true"
+                      aria-controls="faq1"
+                    >        {{ i + 1 }}. {{ c.username }}  
+
+                    <div class="">
+                    <i class="bi bi-caret-down-fill"></i></div>
+                    
+              </a
+                    >
+                  </div>
+
+                  <div
+                    id="demo{{ i + 1 }}"
+                    class="collapse"
+                    aria-labelledby="faqhead1"
+                    data-parent="#faq"
+                  >
+                    <div class="card-body d-flex">
+                      <div class="accordion_card_title text-start w-50">
+                        <p>{{ c.username }}</p>
+                        <p>{{ c.email }}</p>
+                        <p>{{ c.colleague_password }}</p>
+                      </div>
+                      <div class="w-50">
+                        <button 
+                          class="btn btn-danger"
+                          (click)="getColleagueId(c.id)"
+                          data-toggle="modal"
+                          data-target="#delete"
+                        >
+                          <i class="fa fa-trash"></i> Delete Account
+                        </button>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+                </div>
+              </div>
+
+              <h1>
+
+                <button
+                 *ngIf="checkToshow"
+                  type="button"
+                  data-target="#add-colleague"
+                  data-toggle="modal"
+                  class="add-colleague pull-right"
+                >
+                  &#43;
+                </button>
+              </h1>
+            </div>
+          </div>
+
+          <!-- =================================================== -->
+
+          <!-- <div class="colleague-profile">
+            <h6>Colleague Profile</h6>
+            <ul>
+              <li
+                *ngFor="let c of colleagues; let i = index"
+                class="colleagueView"
+              >
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  data-toggle="collapse"
+                  [attr.data-target]="'#demo' + (i + 1)"
+                >
+                  {{ i + 1 }} {{ c.username }}
+                </button>
+        
+                <div id="demo{{ i + 1 }}" class="collapse">
+                  <ul>
+                    <li>{{ c.username }}</li>
+                    <li>{{ c.email }}</li>
+                    <li>{{ c.colleague_password }}</li>
+                  </ul>
+                  <button class="btn btn-delete" (click)="getColleagueId(c.id)">
+                    <i class="fa fa-trash"></i> Delete Account
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <button
+              type="button"
+              data-target="#add-colleague"
+              data-toggle="modal"
+              class="add-colleague pull-right"
+            >
+              &#43;
+            </button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-footer></app-footer> -->
+<!--------------------------- create post profile  --------------------------------->
+
+<div id="involvement" class="modal fade" role="dialog ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3 class="text-center">CREATE POST by profile</h3>
+      </div>
+      <div class="modal-body my-modal-body">
+        <form [formGroup]="postForm" (ngSubmit)="submit_create_posts($event)">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <input
+                      formControlName="name"
+                      type="text"
+                      name="post-name"
+                      placeholder="Enter post name"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <select
+                      formControlName="project_type"
+                      (click)="getType()"
+                      id="selType"
+                      class="form-control ash-select"
+                    >
+                      <option hidden>Select Project Type</option>
+                      <option
+                        *ngFor="let b of project_typeData; let i = index"
+                        [value]="project_typeData[i]?.id"
+                      >
+                        {{ project_typeData[i].type }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div *ngIf="hideCat == 0" class="form-group">
+                    <select
+                      formControlName="project_category"
+                      class="form-control ash-select"
+                    >
+                      <option class="light-color-me" hidden>
+                        Select Project Category
+                      </option>
+                      <option
+                        *ngFor="let c of project_categoryData; let i = index"
+                        [value]="project_categoryData[i]?.id"
+                      >
+                        {{ project_categoryData[i].category }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <!-- <div class="form-group">
+                                                <input type="text" name="year" placeholder="Select year" class="yearselect form-control">
+                                            </div> -->
+
+                  <div *ngIf="typ == 0" class="form-group">
+                    <input
+                      formControlName="year"
+                      placeholder="Enter Year in YYYY"
+                      id="yearpicker"
+                      class="form-control"
+                      type="number"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="typ == 1" class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input
+                      formControlName="t_type_start_date"
+                      id="start-date"
+                      placeholder="Enter start-date"
+                      type="text"
+                      onfocus="(this.type='date')"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      onfocus="(this.type='date')"
+                      formControlName="t_type_end_date"
+                      id="end-date"
+                      placeholder="Enter end-date"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <mat-chip-list #chipList aria-label="Taggs selection">
+                      <mat-chip
+                        *ngFor="let tagg of taggs"
+                        [selectable]="selectable"
+                        [removable]="removable"
+                        (removed)="remove(tagg)"
+                      >
+                        {{ tagg.name }}
+                        <mat-icon matChipRemove *ngIf="removable"
+                          >cancel</mat-icon
+                        >
+                      </mat-chip>
+                    </mat-chip-list>
+                    <br />
+                    <input
+                      type="text"
+                      formControlName="tags"
+                      data-toggle="modal"
+                      data-target="#enter-tags"
+                      placeholder="Enter tags"
+                      class="form-control tagcss"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <input
+                      type="hidden"
+                      id="map-lat"
+                      name="lat"
+                      placeholder="Enter tags"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="hidden"
+                      id="map-lon"
+                      name="lon"
+                      placeholder="Enter tags"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="hidden"
+                      id="myimg"
+                      name="imgg"
+                      placeholder="get image"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="form-group abtpst">
+                    <textarea
+                      formControlName="about_post"
+                      type="text"
+                      name="question"
+                      rows="5"
+                      placeholder="Type something.. "
+                      class="form-control"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="some-gap">
+                <div class="mark-inv-img">
+                  <ul class="pictures">
+                    <li
+                      class="marks"
+                      *ngFor="let img of base64Image; let i = index"
+                    >
+                      <a
+                        href="JavaScript:void(0);"
+                        data-toggle="modal"
+                        data-target="#my-pic"
+                      >
+                        <img [src]="img" />
+                      </a>
+                      <button class="remove-pic" (click)="removeImage(img, i)">
+                        &#10006;
+                      </button>
+                      <input
+                        class="credit-field"
+                        [attr.id]="'imgTag' + i"
+                        type="text"
+                        placeholder="Enter Credit"
+                      />
+                    </li>
+                  </ul>
+                  <!-- <button (click)="addInput()">Add Input</button>
+                                    <div *ngFor="let input of inputs">
+                                        <input [(ngModel)]="input.value">
+                                    </div>
+                                    {{inputs | json}} -->
+
+                  <!-- <label class="add-here">
+                                            <input type="file" name="pictures" id="multiImageSelet" multiple="" class="hide-me">
+                                            <i class="fa fa-plus"></i>
+                                        </label> -->
+                </div>
+
+                <div *ngIf="otherOption == true" class="mark-inv-info">
+                  <!-- <button class="btn btn-normal btn-block" data-toggle="modal"
+                                        data-target="#enter-credit">{{postImageTag}}</button> -->
+                  <div class="form-group flex-me">
+                    <input
+                      id="post_perms"
+                      name="accept"
+                      type="checkbox"
+                    /><span>
+                      I here by confirm that the content uploaded here is
+                      original and i have rights to post them.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-6 col-6">
+              <div class="loc-icon">
+                <ul>
+                  <li>
+                    <label class="my-add-img"
+                      ><input
+                        type="file"
+                        id="multiImageSelet"
+                        (change)="chooseImage($event)"
+                        multiple
+                        class="hide-me" /><i class="fa fa-image"></i
+                    ></label>
+                  </li>
+                  <li>
+                    <a
+                      href="JavaScript:void(0);"
+                      data-dismiss="modal"
+                      data-toggle="modal"
+                      data-target="#involvement-location"
+                      ><i class="fa fa-map-marker"></i
+                    ></a>
+                  </li>
+                  <!-- <li><a href="JavaScript:void(0);" data-toggle="modal" data-target="#enter-user-tags">@</a></li> -->
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-6 col-6">
+              <button class="btn btn-yellow btn-block">SUBMIT</button>
+            </div>
+          </div>
+          <div style="color: red">
+            <span>{{ errormessage }}</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Involvement Location Modal -->
+<div id="involvement-location" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="map-rel">
+        <div
+          class="modal-body"
+          style="width: 100%; height: 300px; display: none"
+          id="create_post_map"
+        ></div>
+        <div
+          class="modal-body"
+          style="width: 100%; height: 300px"
+          id="map1"
+        ></div>
+        <!-- <button class="map-absol"><img src="assets/images/icon/pin_red.png" /></button> -->
+      </div>
+      <div class="modal-footer my-modal-footer">
+        <button
+          style="background: #ffd705 !important"
+          class="btn btn-simple btn-block"
+          data-dismiss="modal"
+          data-toggle="modal"
+          data-target="#involvement"
+        >
+          SELECT LOCATION
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="enter-tags" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3 class="text-center">ENTER TAGS</h3>
+      </div>
+      <div class="modal-body my-modal-body">
+        <div class="form-group">
+          <mat-chip-list #chipList aria-label="Taggs selection">
+            <mat-chip
+              *ngFor="let tagg of taggs"
+              id="mtChip"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(tagg)"
+            >
+              {{ tagg.name }}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              [formControl]="new_tag"
+              (keyup.enter)="onEnter()"
+              placeholder="New tagg..."
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)"
+              class="form-control"
+            />
+          </mat-chip-list>
+        </div>
+        <div class="form-group">
+          <ul *ngFor="let t of tagsList" class="tag-ul">
+            <li (click)="addTag($event)">{{ t }}</li>
+          </ul>
+        </div>
+        <button
+          class="btn btn-simple btn-block"
+          (click)="saveTag()"
+          data-dismiss="modal"
+        >
+          SAVE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--------------------------- create post profile end --------------------------------->
+
+<div id="add-colleague" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3 class="text-center">CREATE COLLEAGUE PROFILE</h3>
+      </div>
+      <div class="modal-body my-modal-body">
+        <form
+          [formGroup]="colleagueForm"
+          (ngSubmit)="createColleague(colleagueForm.value)"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              formControlName="username"
+              ngModel
+              name="username"
+              placeholder="User Name"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              formControlName="email"
+              ngModel
+              name="email"
+              placeholder="Email ID"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group country-code-list">
+            <!-- <input type="text" ng2TelInput [ng2TelInputOptions]="{initialCountry: 'in'}"
+                          (hasError)="hasError($event)" (ng2TelOutput)="getNumber($event)"
+                          (intlTelInputObject)="telInputObject($event)" (countryChange)="onCountryChange($event)"
+                          formControlName="mobile_number" class="form-control ccode" style="width: 165%;" /> -->
+
+            <!-- <div class="input-group-prepend">
+                          <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                          <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Action</a>
+                          </div>
+                      </div>
+                      <input type="text" formControlName="mobile_number" class="form-control"
+                          placeholder="Mobile Number" aria-label="Text input with dropdown button"> -->
+          </div>
+
+          <div class="form-group">
+            <input
+              type="password"
+              formControlName="password"
+              ngModel
+              name="conf-password"
+              placeholder="Enter password"
+              class="form-control"
+            />
+          </div>
+          <button
+            class="btn btn-block btn-simple"
+            type="submit"
+            [disabled]="!colleagueForm.valid"
+          >
+            SAVE
+          </button>
+          <button class="btn btn-block btn-third" data-dismiss="modal">
+            CANCEL
+          </button>
+        </form>
+        <div style="color: red">
+          <span>{{ errormessage }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="delete" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header my-modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h3 class="text-center">ALERT</h3>
+      </div>
+      <div class="modal-body modal-delete">
+        <h6>Do you really want to delete this account ?</h6>
+        <button
+          onClick="window.location.reload();"
+          class="btn btn-third"
+          data-dismiss="modal"
+        >
+          NO
+        </button>
+        <button class="btn btn-simple" (click)="deleteColleague()">YES</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- enter-user-tags Modal -->
+
+<!--------------------------- Modal End-------------------------------->

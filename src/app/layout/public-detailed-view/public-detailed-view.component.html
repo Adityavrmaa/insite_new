@@ -1,0 +1,192 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row other-wrap">
+        <div class="col-lg-4 col-md-5 col-sm-12 col-12">
+            <div class="public-detail">
+
+                <div class="dropdown flag-drop" *ngIf="!is_reported">
+                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <img class="flag" src="assets/images/icon/flag.png">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <label *ngFor="let reason of questionDetail?.report_reasons" class="dropdown-item"><input
+                                type="radio" (click)="reportPost(reason.id)" name="choose" />{{reason.reason}}</label>
+
+                    </div>
+                </div>
+                <div class="user-details">
+                    <div class="form-group">
+                        <input type="text" readonly=true class="form-control"
+                            placeholder="{{questionDetail?.nickname}}">
+                    </div>
+                    <p>{{questionDetail?.question_text}}</p>
+                    <ul>
+                        <li><a href="JavaScript:void(0);" data-toggle="modal" data-target="#comment">
+                                <img src="assets/images/icon/qa.png">
+                                <p class="padding-0">{{questionDetail?.total_comments}}</p>
+                            </a></li>
+                        <li>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="dropdown flag-drop flag-margn">
+                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a href="JavaScript:void(0);"><img src="assets/images/icon/share.png">
+                                            <p class="padding-0"></p>
+                                        </a>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://insite.fluper.in/public-detailed-view/{{post_id}}"
+                                            target="_blank">
+                                            <label class="dropdown-item"> Share on linkedin</label>
+                                        </a>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://insite.fluper.in/public-detailed-view/{{post_id}}"
+                                            target="_blank">
+                                            <label class="dropdown-item"> Share on Facebook</label>
+                                        </a>
+                                        <a href="https://twitter.com/intent/tweet?original_referer=https://insite.fluper.in/public-detailed-view/{{post_id}}"
+                                            target="_blank">
+                                            <label class="dropdown-item"> Share on twitter</label>
+                                        </a>
+                                        <a></a>
+                                        <label (click)="copyLink()" class="dropdown-item">Copy link</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </li>
+                        <li><a href="JavaScript:void(0);"><img (click)="likeDislikePost(questionDetail?.is_liked)"
+                                    src="assets/images/icon/like.png">
+                                <p class="padding-0">{{questionDetail?.total_likes}}</p>
+                            </a></li>
+                        <li><a href="JavaScript:void(0);"><img
+                                    (click)="navigateOnMap(questionDetail?.lat,questionDetail?.lon)"
+                                    src="assets/images/icon/sent_mail.png">
+                                <p class="padding-0"></p>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ====================== -->
+            <!-- <div class="border container">
+                <div class="d-flex">
+                    <div class="">
+                        <ul *ngFor="let c of commentname">
+                            <li><img class="img rounded-circle" width="20%" height="20%"
+                                    src="{{c.comment_by.profile_image}}"></li>
+                            <li>Company Name : {{c.comment_by.company_name}}</li>
+                            <li>{{c.content}}</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div> -->
+            <!-- =============================================== -->
+
+            <!-- ======================================================== -->
+            <div style="height: 300px;
+            border: 1px solid gainsboro;
+            overflow-x: hidden;
+            overflow-y: auto;">
+                <div class="likes-list">
+                    <ul *ngFor="let c of comments; let i =index;">
+                        <li>
+                            <div class="likes-flex">
+                                <div class="likes-img">
+                                    <img src="{{comments[i].comment_by.profile_image||'assets/images/1099386850.jpg'}}">
+                                </div>
+                                <div class="likes-name">
+                                    <h6>{{comments[i].comment_by.company_name}}</h6>
+                                    <h6>{{comments[i].comment_by.name}}</h6>
+                                    <p>{{comments[i].created}}</p>
+                                </div>
+                                <div class="likes">
+                                    <a href="JavaScript:void(0);">
+                                        <img (click)="likeDislikeComment(comments[i].id,comments[i].is_liked)"
+                                            src="assets/images/icon/like.png"><span>{{comments[i].total_like}}</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="likes-info">
+                                <p>{{comments[i].content}}</p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ==================================================================== -->
+
+
+
+        </div>
+        <div class="col-lg-8 col-md-7 col-sm-12 col-12">
+            <a href="{{questionDetail?.picture}}" target="_blank" rel="noopener noreferrer">
+                <div class="destroted" [ngStyle]="{'background-image': 'url(' + questionDetail?.picture + ')'}"></div>
+            </a>
+            <!-- <div class="cover-pic" >
+            <img src="{{questionDetail?.picture}}">
+        </div> -->
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->
+
+<div id="comment" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <button class="close" style="text-align: right; margin-right: 10px;" data-dismiss="modal">&times;</button>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+                        <div class="likes-list">
+                            <ul *ngFor="let c of comments; let i =index;">
+                                <li>
+                                    <div class="likes-flex">
+                                        <div class="likes-img">
+                                            <img
+                                                src="{{comments[i].comment_by.profile_image||'assets/images/1099386850.jpg'}}">
+                                        </div>
+                                        <div class="likes-name">
+                                            <h6>{{comments[i].comment_by.company_name}}</h6>
+                                            <h6>{{comments[i].comment_by.name}}</h6>
+                                            <p>{{comments[i].created}}</p>
+                                        </div>
+                                        <div class="likes">
+                                            <a href="JavaScript:void(0);">
+                                                <img (click)="likeDislikeComment(comments[i].id,comments[i].is_liked)"
+                                                    src="assets/images/icon/like.png"><span>{{comments[i].total_like}}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="likes-info">
+                                        <p>{{comments[i].content}}</p>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="comment">
+                            <div class="form-group">
+                                <textarea type="text" id="content" [formControl]="content" class="form-control"
+                                    placeholder="Write a comment"></textarea>
+                            </div>
+                            <div style="color: red ">
+                                <span>{{errormessage}}</span>
+                            </div>
+                            <button class="btn btn-yellow" (click)="commentPost()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<app-footer></app-footer>
